@@ -41,6 +41,54 @@ Label {
 }
 
 TextField {
-  padding: 10;
-  font-size: 13;
+  // padding: 10;
+  // font-size: 13;
+}
+//---
+.login {
+  background-image: url("res://background");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 0 30;
+
+  .border-bottom {
+    border-bottom-width: 1;
+    border-bottom-color: white;
+    margin-bottom: 20;
+    padding-bottom: 8;
+  }
+
+  .form-input {
+    color: white;
+    placeholder-color: white;
+    font-size: 18;
+    border-width: 0;
+  }
+
+  .icon-margin {
+    margin-right: 10;
+  }
+
+  .main-label {
+    color: white;
+    horizontal-align: center;
+    font-family: "Lobster-Regular";
+    font-size: 50;
+    margin-bottom: 32;
+    letter-spacing: 0.1;
+  }
+
+  .submit-button {
+    background-color: #B3C39C;
+    color: #fff;
+    border-radius: 50%;
+  }
+  .sign-up-stack {
+    background-color: #B3C39C;
+    margin-top: 20;
+    border-radius: 50%;
+    color: #fff;
+    text-transform: uppercase;
+  }
 }
