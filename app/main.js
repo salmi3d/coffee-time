@@ -10,17 +10,16 @@ import VueAxios from 'vue-axios'
 import BackendService from './services/BackendService'
 import AuthService from './services/AuthService'
 
-export const backendService = new BackendService()
-export const authService = new AuthService()
-
 Vue.prototype.$store = store
-Vue.prototype.$authService = authService
+Vue.prototype.$authService = new AuthService()
+Vue.prototype.$backendService = new BackendService()
 
 import App from './App.vue'
 
 Vue.use(VueAxios, axios)
 Vue.use(Navigator, { routes })
 Vue.axios.defaults.baseURL = process.env.VUE_APP_API_URL
+Vue.axios.defaults.headers = { 'Content-Type': 'application/json; charset=utf-8' }
 // Vue.use(VueDevtools)
 
 Vue.config.silent = (TNS_ENV !== 'development')

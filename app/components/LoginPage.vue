@@ -1,59 +1,61 @@
 <template>
-  <Page ref="page" actionBarHidden="true" backgroundSpanUnderStatusBar="true">
-    <FlexboxLayout class="login" flexDirection="column" justifyContent="center">
-      <StackLayout>
-        <Label class="main-label" text="CoffeeTime"/>
+  <Page actionBarHidden="true" backgroundSpanUnderStatusBar="true">
+    <ScrollView>
+      <FlexboxLayout class="login" flexDirection="column" justifyContent="center">
         <StackLayout>
+          <Label class="main-label" text="CoffeeTime"/>
+          <StackLayout>
 
-          <FlexboxLayout alignItems="center" class="border-bottom">
-            <Image src="~/assets/img/icon_user.png" width="16" height="16" class="icon-margin" />
-            <TextField
-              hint="Email Address"
-              keyboardType="email"
-              returnKeyType="next"
-              @returnPress="focusPassword"
-              v-model="user.email"
-              :iEnabled="!isAuthenticating"
-              autocorrect="false"
-              autocapitalizationType="none"
-              row="0"
-              class="form-input"
-            />
-          </FlexboxLayout>
+            <FlexboxLayout alignItems="center" class="border-bottom">
+              <Image src="~/assets/img/icon_user.png" width="16" height="16" class="icon-margin" />
+              <TextField
+                hint="Email Address"
+                keyboardType="email"
+                returnKeyType="next"
+                @returnPress="focusPassword"
+                v-model="user.email"
+                :iEnabled="!isAuthenticating"
+                autocorrect="false"
+                autocapitalizationType="none"
+                row="0"
+                class="form-input"
+              />
+            </FlexboxLayout>
 
-          <FlexboxLayout alignItems="center" class="border-bottom">
-            <Image src="~/assets/img/icon_lock.png" width="16" height="16" class="icon-margin" />
-            <TextField
-              ref="password"
-              hint="Password"
-              secure="true"
-              returnKeyType="done"
-              @returnPress="submit"
-              v-model="user.password"
-              :isEnabled="!isAuthenticating"
-              row="1"
-              class="form-input"
-            />
-          </FlexboxLayout>
+            <FlexboxLayout alignItems="center" class="border-bottom">
+              <Image src="~/assets/img/icon_lock.png" width="16" height="16" class="icon-margin" />
+              <TextField
+                ref="password"
+                hint="Password"
+                secure="true"
+                returnKeyType="done"
+                @returnPress="submit"
+                v-model="user.password"
+                :isEnabled="!isAuthenticating"
+                row="1"
+                class="form-input"
+              />
+            </FlexboxLayout>
 
-          <ActivityIndicator :busy="isAuthenticating" rowSpan="2"/>
+            <ActivityIndicator :busy="isAuthenticating" rowSpan="2"/>
+          </StackLayout>
+
+          <Button
+            :text="isLoggingIn ? 'Login' : 'Sign up'"
+            :isEnabled="!isAuthenticating"
+            class="submit-button"
+            @tap="submit"
+          />
+
         </StackLayout>
 
-        <Button
-          :text="isLoggingIn ? 'Login' : 'Sign up'"
-          :isEnabled="!isAuthenticating"
-          class="submit-button"
-          @tap="submit"
+        <Button :text="isLoggingIn ? 'Sign up here' : 'Back to login'"
+          class="sign-up-stack"
+          @tap="toggleDisplay"
         />
 
-      </StackLayout>
-
-      <Button :text="isLoggingIn ? 'Sign up here' : 'Back to login'"
-        class="sign-up-stack"
-        @tap="toggleDisplay"
-      />
-
-    </FlexboxLayout>
+      </FlexboxLayout>
+    </ScrollView>
   </Page>
 </template>
 

@@ -1,5 +1,4 @@
 import BackendService from './BackendService'
-import { backendService } from '../main'
 import Vue from 'nativescript-vue'
 
 export default class AuthService extends BackendService {
@@ -11,9 +10,9 @@ export default class AuthService extends BackendService {
           email: user.email,
           password: user.password
         })
-      backendService.token = JSON.stringify(response.data)
+      Vue.prototype.$backendService.token = response.data
 
-      return backendService.token
+      return Vue.prototype.$backendService.token
     } catch (error) {
       return Promise.reject('Unfortunately we could not find your account.')
     }
@@ -34,7 +33,7 @@ export default class AuthService extends BackendService {
   }
 
   async logout() {
-    backendService.token = ''
+    Vue.prototype.$backendService.token = ''
     return Vue.prototype.$navigator.navigate('/login', { clearHistory: true })
   }
 

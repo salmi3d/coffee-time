@@ -1,10 +1,10 @@
-import Vue from 'nativescript-vue';
-import Vuex from 'vuex';
+import Vue from 'nativescript-vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 const state = {
-  user: null,
+  token: '',
   cafes: [],
 }
 
@@ -13,7 +13,9 @@ const getters = {
 }
 
 const mutations = {
-
+  setToken: (state, token) => {
+    state.token = token
+  },
 }
 
 const actions = {
