@@ -58,6 +58,7 @@
 </template>
 
 <script>
+  import { connectionType, getConnectionType } from 'tns-core-modules/connectivity'
   import User from '../models/User'
   import alert from '../utils/alert'
 
@@ -75,24 +76,38 @@
     },
     methods: {
       toggleDisplay() {
-        this.isLoggingIn = !this.isLoggingIn;
+        this.isLoggingIn = !this.isLoggingIn
       },
       focusPassword() {
-        this.$refs.password.nativeView.focus();
+        this.$refs.password.nativeView.focus()
       },
       submit() {
-        this.isAuthenticating = true;
+        this.isAuthenticating = true
         if (this.isLoggingIn) {
-          this.login();
+          this.login()
         } else {
-          this.signUp();
+          this.signUp()
         }
       },
       login() {
 
       },
       signUp() {
-
+        if (getConnectionType() === connectionType.none) {
+          alert("CoffeeTime requires an internet connection to register.")
+          return
+        }
+        this.$authService
+          .register(this.user)
+          .then(() => {
+            alert("Your account was successfully created.")
+            this.isAuthenticating = false
+            this.toggleDisplay()
+          })
+          .catch(error => {
+            this.isAuthenticating = false
+            alert(error)
+          })
       },
     },
   }
