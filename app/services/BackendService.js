@@ -1,6 +1,6 @@
-import { getString, setString } from 'tns-core-modules/application-settings';
+import { getString, setString } from 'tns-core-modules/application-settings'
 
-const tokenKey = "token";
+const tokenKey = 'token'
 
 /**
  * Parent service class. Has common configs and methods.
@@ -8,15 +8,15 @@ const tokenKey = "token";
 export default class BackendService {
 
   isLoggedIn() {
-    return !!getString(tokenKey);
+    return !!getString(tokenKey)
   }
 
   get token() {
-    return getString(tokenKey);
+    return getString(tokenKey)
   }
 
   set token(newToken) {
-    setString(tokenKey, newToken);
+    setString(tokenKey, newToken)
   }
 
 }

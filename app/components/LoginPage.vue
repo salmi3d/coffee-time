@@ -11,7 +11,7 @@
               hint="Email Address"
               keyboardType="email"
               returnKeyType="next"
-              @returnPress="focusPassword()"
+              @returnPress="focusPassword"
               v-model="user.email"
               :iEnabled="!isAuthenticating"
               autocorrect="false"
@@ -28,7 +28,7 @@
               hint="Password"
               secure="true"
               returnKeyType="done"
-              @returnPress="submit()"
+              @returnPress="submit"
               v-model="user.password"
               :isEnabled="!isAuthenticating"
               row="1"
@@ -43,14 +43,14 @@
           :text="isLoggingIn ? 'Login' : 'Sign up'"
           :isEnabled="!isAuthenticating"
           class="submit-button"
-          @tap="submit()"
+          @tap="submit"
         />
 
       </StackLayout>
 
       <Button :text="isLoggingIn ? 'Sign up here' : 'Back to login'"
         class="sign-up-stack"
-        @tap="toggleDisplay()"
+        @tap="toggleDisplay"
       />
 
     </FlexboxLayout>
@@ -90,7 +90,20 @@
         }
       },
       login() {
-
+        if (getConnectionType() === connectionType.none) {
+          alert("CoffeeTime requires an internet connection to log in.")
+          return
+        }
+        this.$authService
+          .login(this.user)
+          .then(() => {
+            this.isAuthenticating = false
+            this.$navigator.navigate('/home', { clearHistory: true })
+          })
+          .catch(error => {
+            this.isAuthenticating = false
+            alert(error)
+          })
       },
       signUp() {
         if (getConnectionType() === connectionType.none) {
