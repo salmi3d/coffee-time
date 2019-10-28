@@ -6,6 +6,7 @@ Vue.use(Vuex)
 const state = {
   token: '',
   cafes: [],
+  activeCafe: '',
   _cafes: [
     {
       "id": "99960bd9-5797-4926-beea-9888eefd8123",
@@ -51,7 +52,9 @@ const state = {
 }
 
 const getters = {
-
+  cafe: state => {
+    return state.cafes.find(cafe => cafe.id === state.activeCafe)
+  },
 }
 
 const mutations = {
@@ -60,6 +63,9 @@ const mutations = {
   },
   setCafes: (state, cafes) => {
     state.cafes = state._cafes
+  },
+  setActiveCafe: (state, id) => {
+    state.activeCafe = id;
   },
 }
 

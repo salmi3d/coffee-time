@@ -1,8 +1,8 @@
 <template>
-  <Page ref="page" actionBarHidden="true" backgroundSpanUnderStatusBar="true">
+  <Page actionBarHidden="true" backgroundSpanUnderStatusBar="true">
     <GridLayout class="container" rows="auto, *">
 
-      <action-bar row="0" text="CoffeeTime" :back="false"/>
+      <action-bar row="0" :back="false"/>
 
       <ListView row="1" for="cafe in cafes" @itemTap="onCafeTap" class="cafe-list-item">
         <v-template>
@@ -42,7 +42,11 @@ export default {
   methods: {
     ...mapActions(['fetchCafes']),
     onCafeTap(args) {
-      alert(args.item.id)
+      this.$navigator.navigate('/cafe', {
+        props: {
+          id: args.item.id
+        }
+      })
     },
   }
 }

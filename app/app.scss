@@ -2,7 +2,7 @@
 
 Page {
   background-color: #8FD2C6;
-  font-family: "SFUIText-Light";
+  font-family: SFUIText-Light;
   font-size: 18;
   margin: 0;
   padding: 0;
@@ -15,22 +15,18 @@ Page {
 .container {
   background-color: #F3F3F3;
 }
-.action-bar {
+.actionbar {
   background-color: #B3C39C;
   color: #474747;
   font-weight: bold;
   font-size: 22;
-  font-family: "Lobster-Regular";
-  padding: 5;
+  font-family: Lobster-Regular;
+  padding: 3;
   vertical-align: middle;
+  &__title {
+    text-align: center;
+  }
 }
-.header {
-  text-align: center;
-}
-.header-icon {
-  padding: 3
-}
-
 //---
 .login {
   background-image: url("res://background");
