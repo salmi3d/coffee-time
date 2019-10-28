@@ -1,4 +1,4 @@
-@import '~/nativescript-theme-core/css/core.light.css';
+@import "~nativescript-theme-core/core";
 
 Page {
   background-color: #8FD2C6;
@@ -14,15 +14,6 @@ Page {
 }
 .container {
   background-color: #F3F3F3;
-}
-.card {
-  background-color: #F5D1E9;
-  border-radius: 3;
-  margin: 10;
-  padding: 20;
-}
-Label {
-  color: #131426;
 }
 .action-bar {
   background-color: #B3C39C;
@@ -40,10 +31,6 @@ Label {
   padding: 3
 }
 
-TextField {
-  // padding: 10;
-  // font-size: 13;
-}
 //---
 .login {
   background-image: url("res://background");
@@ -89,5 +76,41 @@ TextField {
     border-radius: 50%;
     color: #fff;
     text-transform: uppercase;
+  }
+}
+
+.cafe-list-item {
+  &__thumb {
+    margin-right: 5;
+  }
+  &__name,
+  &__laddress,
+  &__address,
+  &__details {
+    margin: 0;
+    padding: 0;
+  }
+  &__name {
+    font-family: SFUIText-Bold;
+    font-size: 20;
+    color: #C8D9AF;
+    margin-bottom: 10;
+  }
+  &__laddress {
+    font-family: SFUIText-Light;
+    font-size: 14;
+    color: #717171;
+  }
+  &__address {
+    font-family: SFUIText-Regular;
+    font-size: 15;
+    color: #717171;
+  }
+  &__details {
+    horizontal-align: right;
+    font-family: SFUIText-Light;
+    font-size: 14;
+    color: #BBB;
+    margin-top: 10;
   }
 }
