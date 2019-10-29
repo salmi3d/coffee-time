@@ -14,6 +14,8 @@ Vue.prototype.$store = store
 Vue.prototype.$authService = new AuthService()
 Vue.prototype.$backendService = new BackendService()
 
+Vue.registerElement('PullToRefresh', () => require('@nstudio/nativescript-pulltorefresh').PullToRefresh)
+
 import App from './App.vue'
 
 Vue.use(VueAxios, axios)
