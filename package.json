@@ -19,6 +19,7 @@
     "setup-webpack-config": "node ./node_modules/vue-cli-plugin-nativescript-vue/lib/scripts/webpack-maintenance pre"
   },
   "dependencies": {
+    "@nstudio/nativescript-pulltorefresh": "^1.0.1",
     "@vue/devtools": "^5.1.1",
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
