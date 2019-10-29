@@ -3,12 +3,12 @@
     <ScrollView>
       <FlexboxLayout class="login" flexDirection="column" justifyContent="center">
         <StackLayout>
-          <Label class="main-label" text="CoffeeTime"/>
+          <Label class="login__main-label" text="CoffeeTime"/>
           <StackLayout>
 
-            <FlexboxLayout alignItems="center" class="border-bottom">
-              <Image src="~/assets/img/icon_user.png" width="16" height="16" class="icon-margin" />
-              <TextField
+            <FlexboxLayout alignItems="center" class="login__input-wrapper">
+              <Image src="~/assets/img/icon_user.png" width="16" height="16" class="login__icon" />
+              <TextField flexGrow="0"
                 hint="Email Address"
                 keyboardType="email"
                 returnKeyType="next"
@@ -17,13 +17,12 @@
                 :iEnabled="!isAuthenticating"
                 autocorrect="false"
                 autocapitalizationType="none"
-                row="0"
-                class="form-input"
+                class="login__form-input"
               />
             </FlexboxLayout>
 
-            <FlexboxLayout alignItems="center" class="border-bottom">
-              <Image src="~/assets/img/icon_lock.png" width="16" height="16" class="icon-margin" />
+            <FlexboxLayout alignItems="center" class="login__input-wrapper">
+              <Image src="~/assets/img/icon_lock.png" width="16" height="16" class="login__icon" />
               <TextField
                 ref="password"
                 hint="Password"
@@ -32,8 +31,7 @@
                 @returnPress="submit"
                 v-model="user.password"
                 :isEnabled="!isAuthenticating"
-                row="1"
-                class="form-input"
+                class="login__form-input"
               />
             </FlexboxLayout>
 
@@ -43,14 +41,14 @@
           <Button
             :text="isLoggingIn ? 'Login' : 'Sign up'"
             :isEnabled="!isAuthenticating"
-            class="submit-button"
+            class="login__submit"
             @tap="submit"
           />
 
         </StackLayout>
 
         <Button :text="isLoggingIn ? 'Sign up here' : 'Back to login'"
-          class="sign-up-stack"
+          class="login__sign-up-stack"
           @tap="toggleDisplay"
         />
 

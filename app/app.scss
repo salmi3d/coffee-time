@@ -10,7 +10,6 @@ Page {
 .fa {
   font-family: FontAwesome, fontawesome-webfont;
   vertical-align: middle;
-  font-size: 18;
 }
 .container {
   background-color: #F3F3F3;
@@ -21,9 +20,13 @@ Page {
   font-weight: bold;
   font-size: 22;
   font-family: Lobster-Regular;
-  padding: 3;
+  padding: 5;
   vertical-align: middle;
-  &__title {
+  &__left,
+  &__right {
+    font-size: 18;
+  }
+  &__center {
     text-align: center;
   }
 }
@@ -35,38 +38,41 @@ Page {
   background-size: cover;
   padding: 20;
 
-  .border-bottom {
+  &__input-wrapper {
     border-bottom-width: 1;
     border-bottom-color: white;
-    margin-bottom: 20;
-    padding-bottom: 8;
+    margin-bottom: 40;
+    height: 40;
   }
 
-  .form-input {
+  &__form-input {
     color: white;
     placeholder-color: white;
-    font-size: 18;
+    padding: 0;
+    margin: 0;
+    border-width: 0;
   }
 
-  .icon-margin {
+  &__icon {
     margin-right: 10;
   }
 
-  .main-label {
+  &__main-label {
     color: white;
     horizontal-align: center;
-    font-family: "Lobster-Regular";
+    font-family: Lobster-Regular;
     font-size: 50;
     margin-bottom: 32;
     letter-spacing: 0.1;
   }
 
-  .submit-button {
+  &__submit {
     background-color: #B3C39C;
     color: #fff;
     border-radius: 50%;
   }
-  .sign-up-stack {
+
+  &__sign-up-stack {
     background-color: #B3C39C;
     margin-top: 20;
     border-radius: 50%;
@@ -79,6 +85,7 @@ Page {
   &__thumb {
     margin-right: 5;
   }
+
   &__name,
   &__laddress,
   &__address,
@@ -86,22 +93,27 @@ Page {
     margin: 0;
     padding: 0;
   }
+
   &__name {
     font-family: SFUIText-Bold;
     font-size: 20;
+    font-weight: bold;
     color: #C8D9AF;
     margin-bottom: 10;
   }
+
   &__laddress {
     font-family: SFUIText-Light;
     font-size: 14;
     color: #717171;
   }
+
   &__address {
     font-family: SFUIText-Regular;
     font-size: 15;
     color: #717171;
   }
+
   &__details {
     horizontal-align: right;
     font-family: SFUIText-Light;
