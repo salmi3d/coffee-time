@@ -5,11 +5,11 @@
       <action-bar row="0" :back="false"/>
 
       <PullToRefresh row="1" @refresh="refreshList">
-        <ListView for="cafe in cafes" @itemTap="onCafeTap" class="cafe-list-item">
+        <ListView for="cafe in cafes" @itemTap="onCafeTap">
           <v-template>
-            <GridLayout columns="120,*">
-              <Image v-show="cafe.images.length > 0" :src="cafe.images" class="cafe-list-item__thumb"/>
-              <StackLayout col="1" row="0" rowSpan="2">
+            <GridLayout columns="120,*" class="cafe-list-item">
+              <Image col="0" v-show="cafe.images.length > 0" :src="cafe.images" class="cafe-list-item__thumb"/>
+              <StackLayout col="1">
                 <Label :text="cafe.name" class="cafe-list-item__name"/>
                 <Label text="address:" class="cafe-list-item__laddress"/>
                 <Label :text="cafe.address" class="cafe-list-item__address"/>
@@ -38,7 +38,7 @@ export default {
   },
   mounted() {
     // eslint-disable-next-line no-console
-    console.log(this.$backendService.token)
+    console.log(`sessionId=${this.$backendService.token}`)
     this.fetchCafes({ isFake: true })
   },
   methods: {

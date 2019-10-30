@@ -7,13 +7,16 @@ Page {
   margin: 0;
   padding: 0;
 }
+
 .fa {
   font-family: FontAwesome, fontawesome-webfont;
   vertical-align: middle;
 }
+
 .container {
   background-color: #F3F3F3;
 }
+// *** === Action Bar === ***
 .actionbar {
   background-color: #B3C39C;
   color: #474747;
@@ -30,7 +33,7 @@ Page {
     text-align: center;
   }
 }
-//---
+// *** === Login Page === ***
 .login {
   background-image: url("res://background");
   background-repeat: no-repeat;
@@ -66,21 +69,19 @@ Page {
     letter-spacing: 0.1;
   }
 
-  &__submit {
-    background-color: #B3C39C;
-    color: #fff;
-    border-radius: 50%;
-  }
-
+  &__submit,
   &__sign-up-stack {
     background-color: #B3C39C;
-    margin-top: 20;
     border-radius: 50%;
     color: #fff;
     text-transform: uppercase;
   }
-}
 
+  &__sign-up-stack {
+    margin-top: 20;
+  }
+}
+// *** === Home Page === ***
 .cafe-list-item {
   &__thumb {
     margin-right: 5;
@@ -120,5 +121,76 @@ Page {
     font-size: 14;
     color: #BBB;
     margin-top: 10;
+  }
+}
+// *** === Cafe Page === ***
+.products-wrapper {
+  margin: 3;
+}
+.product-info {
+  margin: 3;
+  padding: 10;
+  background-color: #fff;
+
+  &__name {
+    font-family: SFUIText-Bold;
+    font-weight: bold;
+    font-size: 16;
+    color: #717171;
+  }
+
+  &__subname {
+    font-family: SFUIText-Regular;
+    font-size: 12;
+    color: #717171;
+    padding: 0;
+  }
+
+  &__thumb {
+    margin: 10;
+  }
+
+  &__price,
+  &__price-sign {
+    color: #C8D9AF;
+    font-size: 24;
+    color: #C8D9AF;
+  }
+
+  &__price {
+    font-family: Lobster-Regular;
+  }
+
+  &__favorite {
+    horizontal-align: right;
+    padding-right: 5;
+    color: #ccc;
+    &_active {
+      color: #ff4b55;
+    }
+  }
+}
+
+.cafe-info {
+  &__name,
+  &__address {
+    margin-left: 16;
+  }
+
+  &__name {
+    font-family: Lobster-Regular;
+    font-size: 28;
+    color: #474747;
+    line-height: 30;
+  }
+
+  &__address {
+    font-family: SFUIText-Regular;
+    font-size: 18;
+    color: #717171;
+  }
+
+  &__gradient {
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0), rgba(255,255,255,1));
   }
 }
