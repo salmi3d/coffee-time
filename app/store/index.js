@@ -9,12 +9,15 @@ const state = {
   cafes: [],
   activeCafe: '',
   cafeProducts: [],
-  activeProduct: ''
+  activeCafeProduct: ''
 }
 
 const getters = {
   cafe: state => {
     return state.cafes.find(cafe => cafe.id === state.activeCafe)
+  },
+  cafeProduct: state => {
+    return state.cafeProducts.find(cafeProduct => cafeProduct.id === state.activeCafeProduct)
   },
 }
 
@@ -24,6 +27,9 @@ const mutations = {
   },
   setActiveCafe: (state, id) => {
     state.activeCafe = id;
+  },
+  setActiveCafeProduct: (state, id) => {
+    state.activeCafeProduct = id;
   },
   setCafeProducts: (state, cafeProducts) => {
     state.cafeProducts = cafeProducts

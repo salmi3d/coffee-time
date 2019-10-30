@@ -115,7 +115,9 @@ export default {
         this.ignoreTap = false
         return
       }
-      alert(id)
+      this.$navigator.navigate('/product', {
+        props: { id }
+      })
     },
     onProductFavoriteTap(product) {
       this.ignoreTap = true
