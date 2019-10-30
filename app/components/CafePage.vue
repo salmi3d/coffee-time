@@ -7,26 +7,33 @@
       <ScrollView row="1">
         <StackLayout>
 
-          <GridLayout rows="*,auto" class="cafe-info">
+          <GridLayout rows="*,auto" class="cafe-card">
 
             <GridLayout rowSpan="2">
               <Image :src="cafe.images"/>
-              <StackLayout class="cafe-info__gradient"/>
+              <StackLayout class="cafe-card__gradient"/>
             </GridLayout>
 
-            <StackLayout row="1" verticalAlignment="bottom">
-              <Label :text="cafe.name" class="cafe-info__name"/>
-              <Label :text="cafe.address" class="cafe-info__address"/>
+            <StackLayout row="1" class="cafe-card__info">
+              <Label :text="cafe.name" class="cafe-card__name"/>
+              <GridLayout columns="*,auto">
+                <Label col="0" :text="cafe.address" class="cafe-card__address"/>
+                <Label col="1" class="fa cafe-card__favorite-filter"
+                  :text="onlyFavoriteProducts ? 'fa-heart' : 'fa-heart-o' | fonticon"
+                  @tap="onFavoriteFilterTap"
+                  :class="{ 'cafe-card__favorite-filter_active': onlyFavoriteProducts }"
+                />
+              </GridLayout>
             </StackLayout>
 
           </GridLayout>
 
           <GridLayout columns="*,*" :rows="rows" class="products-wrapper">
-
+            <!-- v-show="(onlyFavoriteProducts && product.favorite) || !onlyFavoriteProducts" -->
             <GridLayout class="product-info" columns="auto,auto,*" rows="auto,auto,*,auto"
-              v-for="(product, index) in cafeProducts"
-              :key="index"
-              :row="index / 2"
+              v-for="(product, index) in filteredCafeProducts"
+              :key="product.id"
+              :row="Math.floor(index / 2)"
               :col="index % 2"
               @tap="onCafeProductTap(product.id)"
             >
@@ -65,6 +72,7 @@ export default {
   data() {
     return {
       ignoreTap: false,
+      onlyFavoriteProducts: false,
     }
   },
   props: ['id'],
@@ -81,10 +89,18 @@ export default {
     ...mapGetters(['cafe']),
     rows() {
       const rows = [];
-      for (let i = 0; i < this.cafeProducts.length / 2; i++) {
+      for (let i = 0; i < this.filteredCafeProducts.length / 2; i++) {
           rows.push('auto');
       }
       return rows.join(',');
+    },
+    filteredCafeProducts() {
+      return this.cafeProducts.filter(product => {
+        if(this.onlyFavoriteProducts) {
+          return product.favorite === true
+        }
+        return true
+      })
     },
   },
   mounted() {
@@ -122,6 +138,9 @@ export default {
           })
         })
     },
+    onFavoriteFilterTap() {
+      this.onlyFavoriteProducts = !this.onlyFavoriteProducts
+    }
   }
 }
 </script>
