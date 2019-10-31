@@ -6,15 +6,18 @@
 
       <ScrollView row="1">
 
-        <GridLayout rows="auto,auto,auto,*,auto" columns="*,*,4*" class="product-card">
-          <Image row="0" colSpan="3" :src="cafeProduct.imagesPath" class="product-card__image"/>
-          <Label row="1" colSpan="2" :text="cafeProduct.name" class="product-card__name"/>
-          <Label row="1" col="2" class="fa product-card__favorite"
-            :text="cafeProduct.favorite ? 'fa-heart' : 'fa-heart-o' | fonticon"
-            :class="{ 'product-card__favorite_active': cafeProduct.favorite }"
-          />
+        <GridLayout rows="auto,auto,auto,*,auto" columns="*,2*" class="product-card">
+          <Image row="0" colSpan="2" :src="cafeProduct.imagesPath" class="product-card__image"/>
 
-          <GridLayout row="2" colSpan="3" rows="auto" columns="auto,auto,auto,auto,auto">
+          <FlexboxLayout row="1" colSpan="2" alignItems="center">
+            <Label :text="cafeProduct.name" class="product-card__name"/>
+            <Label class="fa product-card__favorite"
+              :text="cafeProduct.favorite ? 'fa-heart' : 'fa-heart-o' | fonticon"
+              :class="{ 'product-card__favorite_active': cafeProduct.favorite }"
+            />
+          </FlexboxLayout>
+
+          <GridLayout row="2" colSpan="2" rows="auto" columns="auto,auto,auto,auto,auto" class="product-card__ingredients-wrapper">
 
             <StackLayout col="0" class="product-card__ingredient">
               <Image src="~/assets/img/icon_milk.png" class="product-card__ingredient-icon"/>
@@ -43,13 +46,17 @@
 
           </GridLayout>
 
-          <TextView row="3" colSpan="3" class="product-card__description"
+          <TextView row="3" colSpan="2" class="product-card__description"
             editable="false"
             text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Error placeat ipsam suscipit vero, labore dignissimos praesentium."
           />
-          <Label row="4" col="0" :text="cafeProduct.price" class="product-card__price"/>
-          <Label row="4" col="1" :text="'fa-rub' | fonticon" class="fa product-card__price-sign"/>
-          <Button row="4" col="2" class="product-card__order-button" text="ORDER NOW" @tap="onOrderButtonTap"/>
+
+          <FlexboxLayout row="4" col="0" alignItems="center">
+            <Label :text="cafeProduct.price" class="product-card__price"/>
+            <Label :text="'fa-rub' | fonticon" class="fa product-card__price-sign"/>
+          </FlexboxLayout>
+
+          <Button row="4" col="1" class="product-card__order-button" text="ORDER NOW" @tap="onOrderButtonTap"/>
         </GridLayout>
 
       </ScrollView>
@@ -60,6 +67,7 @@
 
 <script>
 import ActionBar from './ActionBar'
+import alert from '../utils/alert'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -102,25 +110,26 @@ export default {
   padding: 10;
 
   &__image {
-    margin-bottom: 5;
+    margin-bottom: 10;
   }
 
   &__name {
     font-family: Lobster-Regular;
     font-size: 24;
     color: #474747;
-    margin-bottom: 10;
-    // border-width: 1;
   }
 
   &__favorite {
-    margin: 0 0 5 5;
+    margin-left: 10;
     color: #ccc;
     font-size: 24;
-    // border-width: 1;
     &_active {
       color: #ff4b55;
     }
+  }
+
+  &__ingredients-wrapper {
+    // margin-top: 10;
   }
 
   &__ingredient {
@@ -158,14 +167,13 @@ export default {
 
   &__price {
     font-family: SFUIText-Regular;
-    vertical-align: middle;
-    font-size: 28;
+    // vertical-align: middle;
+    // font-size: 28;
     horizontal-align: right;
-    padding-left: 0;
   }
 
   &__price-sign {
-    margin: 3 0 0 5;
+    margin-left: 10;
   }
 
   &__order-button {

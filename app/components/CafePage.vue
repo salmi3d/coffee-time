@@ -2,7 +2,7 @@
   <Page actionBarHidden="true" backgroundSpanUnderStatusBar="true">
     <GridLayout class="container" rows="auto, *">
 
-      <action-bar row="0"/>
+      <ActionBar row="0"/>
 
       <ScrollView row="1">
         <StackLayout>

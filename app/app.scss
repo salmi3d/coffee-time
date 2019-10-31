@@ -24,12 +24,18 @@ Page {
   font-size: 22;
   font-family: Lobster-Regular;
   padding: 5;
-  vertical-align: middle;
+
   &__left,
   &__right {
     font-size: 18;
   }
+
+  &__left_hidden {
+    opacity: 0;
+  }
+
   &__center {
+    flex-grow: 1;
     text-align: center;
   }
 }

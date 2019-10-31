@@ -2,7 +2,7 @@
   <Page actionBarHidden="true" backgroundSpanUnderStatusBar="true">
     <GridLayout class="container" rows="auto, *">
 
-      <action-bar row="0" :back="false"/>
+      <ActionBar row="0" :back="false"/>
 
       <PullToRefresh row="1" @refresh="refreshList">
         <ListView for="cafe in cafes" @itemTap="onCafeTap">

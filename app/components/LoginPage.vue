@@ -35,7 +35,7 @@
               />
             </FlexboxLayout>
 
-            <ActivityIndicator :busy="isAuthenticating" rowSpan="2"/>
+            <ActivityIndicator :busy="isAuthenticating"/>
           </StackLayout>
 
           <Button
