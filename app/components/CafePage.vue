@@ -121,25 +121,30 @@ export default {
       })
     },
     onProductFavoriteTap(product) {
+      //
+      // console.log(this.$store.state.cafeProducts.length)
+      // this.$store.state.cafeProducts.forEach(e => console.log(e.favorite))
+      //
       this.ignoreTap = true
-      product.favorite = !product.favorite
-      if(!product.favorite) {
-        return
-      }
-      let view = this.$refs[`favorite_${product.id}`][0]
-      view.nativeView
-        .animate({
-          scale: { x: 1.8, y: 1.8 },
-          duration: 100,
-          curve: enums.AnimationCurve.easeIn
-        })
-        .then(() => {
-          view.nativeView.animate({
-            scale: { x: 1, y: 1 },
+      this.$store.dispatch('toggleCafeProductFavorite', product).then(() => {
+        if(!product.favorite) {
+          return
+        }
+        let view = this.$refs[`favorite_${product.id}`][0]
+        view.nativeView
+          .animate({
+            scale: { x: 1.8, y: 1.8 },
             duration: 100,
-            curve: enums.AnimationCurve.easeOut
+            curve: enums.AnimationCurve.easeIn
           })
-        })
+          .then(() => {
+            view.nativeView.animate({
+              scale: { x: 1, y: 1 },
+              duration: 100,
+              curve: enums.AnimationCurve.easeOut
+            })
+          })
+      })
     },
     onFavoriteFilterTap() {
       this.$store.commit('toggleFilterFavoriteProducts')

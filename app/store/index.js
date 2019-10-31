@@ -38,6 +38,10 @@ const mutations = {
   toggleFilterFavoriteProducts: (state) => {
     state.filterFavoriteProducts = !state.filterFavoriteProducts
   },
+  toggleCafeProductFavorite: (state, cafeProductId) => {
+    let cafeProduct = state.cafeProducts.find(cafeProduct => cafeProduct.id === cafeProductId)
+    cafeProduct.favorite = !cafeProduct.favorite
+  },
 }
 
 const actions = {
@@ -59,7 +63,7 @@ const actions = {
         console.log(error)
       })
   },
-  fetchCafeProducts({ state, commit }){
+  fetchCafeProducts({ state, commit }) {
     return Vue.axios
       .post('/Product/GetProductsCafe', {
         'sessionId': Vue.prototype.$backendService.token,
@@ -67,6 +71,23 @@ const actions = {
       })
       .then(response => {
         commit('setCafeProducts', response.data)
+      })
+      .catch(error => {
+        // eslint-disable-next-line no-console
+        console.log(error)
+      })
+  },
+  toggleCafeProductFavorite({ commit }, payload) {
+    const apiBranch = '/Favorite/' + (payload.favorite ? 'Unset' : 'Set')
+    return Vue.axios
+      .post(apiBranch, {
+        'sessionId': Vue.prototype.$backendService.token,
+        'productId': payload.id
+      })
+      .then(response => {
+        if(response.data === true) {
+          commit('toggleCafeProductFavorite', payload.id)
+        }
       })
       .catch(error => {
         // eslint-disable-next-line no-console
