@@ -9,7 +9,8 @@ const state = {
   cafes: [],
   activeCafe: '',
   cafeProducts: [],
-  activeCafeProduct: ''
+  activeCafeProduct: '',
+  filterFavoriteProducts: false,
 }
 
 const getters = {
@@ -33,6 +34,9 @@ const mutations = {
   },
   setCafeProducts: (state, cafeProducts) => {
     state.cafeProducts = cafeProducts
+  },
+  toggleFilterFavoriteProducts: (state) => {
+    state.filterFavoriteProducts = !state.filterFavoriteProducts
   },
 }
 
@@ -58,8 +62,8 @@ const actions = {
   fetchCafeProducts({ state, commit }){
     return Vue.axios
       .post('/Product/GetProductsCafe', {
-        "sessionId": Vue.prototype.$backendService.token,
-        "cafeId": state.activeCafe
+        'sessionId': Vue.prototype.$backendService.token,
+        'cafeId': state.activeCafe
       })
       .then(response => {
         commit('setCafeProducts', response.data)

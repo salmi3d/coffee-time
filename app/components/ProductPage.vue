@@ -100,7 +100,7 @@ export default {
     },
     methods: {
       onOrderButtonTap() {
-        alert(this.cafeProduct.name)
+        alert(`${this.cafeProduct.name} was ordered!`)
       }
     },
 }

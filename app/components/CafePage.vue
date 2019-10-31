@@ -19,9 +19,9 @@
               <GridLayout columns="*,auto">
                 <Label col="0" :text="cafe.address" class="cafe-card__address"/>
                 <Label col="1" class="fa cafe-card__favorite-filter"
-                  :text="onlyFavoriteProducts ? 'fa-heart' : 'fa-heart-o' | fonticon"
+                  :text="filterFavoriteProducts ? 'fa-heart' : 'fa-heart-o' | fonticon"
                   @tap="onFavoriteFilterTap"
-                  :class="{ 'cafe-card__favorite-filter_active': onlyFavoriteProducts }"
+                  :class="{ 'cafe-card__favorite-filter_active': filterFavoriteProducts }"
                 />
               </GridLayout>
             </StackLayout>
@@ -29,7 +29,7 @@
           </GridLayout>
 
           <GridLayout columns="*,*" :rows="rows" class="products-wrapper">
-            <!-- v-show="(onlyFavoriteProducts && product.favorite) || !onlyFavoriteProducts" -->
+            <!-- v-show="(filterFavoriteProducts && product.favorite) || !filterFavoriteProducts" -->
             <GridLayout class="product-info" columns="auto,auto,*" rows="auto,auto,*,auto"
               v-for="(product, index) in filteredCafeProducts"
               :key="product.id"
@@ -72,7 +72,6 @@ export default {
   data() {
     return {
       ignoreTap: false,
-      onlyFavoriteProducts: false,
     }
   },
   props: ['id'],
@@ -85,7 +84,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['cafeProducts']),
+    ...mapState(['cafeProducts', 'filterFavoriteProducts']),
     ...mapGetters(['cafe']),
     rows() {
       const rows = [];
@@ -96,7 +95,7 @@ export default {
     },
     filteredCafeProducts() {
       return this.cafeProducts.filter(product => {
-        if(this.onlyFavoriteProducts) {
+        if(this.filterFavoriteProducts) {
           return product.favorite === true
         }
         return true
@@ -141,7 +140,7 @@ export default {
         })
     },
     onFavoriteFilterTap() {
-      this.onlyFavoriteProducts = !this.onlyFavoriteProducts
+      this.$store.commit('toggleFilterFavoriteProducts')
     }
   }
 }
