@@ -4,8 +4,9 @@
 
       <ActionBar row="0"/>
 
-      <ScrollView row="1">
-        <StackLayout>
+      <PullToRefresh row="1" @refresh="refreshPage">
+        <ScrollView>
+          <StackLayout>
 
           <GridLayout rows="*,auto" class="cafe-card">
 
@@ -52,8 +53,9 @@
 
           </GridLayout>
 
-        </StackLayout>
-      </ScrollView>
+          </StackLayout>
+        </ScrollView>
+      </PullToRefresh>
 
     </GridLayout>
   </Page>
@@ -141,6 +143,12 @@ export default {
     },
     onFavoriteFilterTap() {
       this.$store.commit('toggleFilterFavoriteProducts')
+    },
+    refreshPage(args) {
+      var pullRefresh = args.object
+      this.fetchCafeProducts().then(() => {
+        setTimeout(() => pullRefresh.refreshing = false, 100)
+      })
     }
   }
 }
