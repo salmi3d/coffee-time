@@ -1,9 +1,9 @@
-import * as dialogsModule from "tns-core-modules/ui/dialogs"
+import * as dialogsModule from 'tns-core-modules/ui/dialogs'
 
-export default function alert(message) {
+export default (message) => {
     return dialogsModule.alert({
-        title: "CoffeeTime",
-        okButtonText: "OK",
+        title: 'CoffeeTime',
+        okButtonText: 'OK',
         message: message
     })
 }

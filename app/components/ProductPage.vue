@@ -13,8 +13,10 @@
           <FlexboxLayout row="1" alignItems="center">
             <Label :text="cafeProduct.name" class="product-card__name"/>
             <Label class="fa product-card__favorite"
+              ref="favorite"
               :text="cafeProduct.favorite ? 'fa-heart' : 'fa-heart-o' | fonticon"
               :class="{ 'product-card__favorite_active': cafeProduct.favorite }"
+              @tap="onFavoriteTap"
             />
           </FlexboxLayout>
 
@@ -67,9 +69,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import ActionBar from './ActionBar'
 import alert from '../utils/alert'
-import { mapGetters } from 'vuex'
+import animations from '../utils/animations'
 
 export default {
   name: 'ProductPage',
@@ -96,12 +99,20 @@ export default {
     mounted() {
       // eslint-disable-next-line no-console
       console.log(`productId=${this.id}`)
-      // this.fetchCafeProducts()
     },
+    mixins: [ animations.Heartbeat ],
     methods: {
       onOrderButtonTap() {
         alert(`${this.cafeProduct.name} was ordered!`)
-      }
+      },
+      onFavoriteTap() {
+        this.$store.dispatch('toggleCafeProductFavorite', this.cafeProduct).then(() => {
+          if(!this.cafeProduct.favorite) {
+            return
+          }
+          this.playHeartbeatAnimation(this.$refs.favorite)
+        })
+      },
     },
 }
 </script>

@@ -64,7 +64,7 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import ActionBar from './ActionBar'
-import * as enums from 'ui/enums'
+import animations from '../utils/animations'
 
 export default {
   name: 'CafePage',
@@ -109,6 +109,7 @@ export default {
     console.log(`cafeId=${this.id}`)
     this.fetchCafeProducts()
   },
+  mixins: [ animations.Heartbeat ],
   methods: {
     ...mapActions(['fetchCafeProducts']),
     onCafeProductTap(id) {
@@ -121,29 +122,12 @@ export default {
       })
     },
     onProductFavoriteTap(product) {
-      //
-      // console.log(this.$store.state.cafeProducts.length)
-      // this.$store.state.cafeProducts.forEach(e => console.log(e.favorite))
-      //
       this.ignoreTap = true
       this.$store.dispatch('toggleCafeProductFavorite', product).then(() => {
         if(!product.favorite) {
           return
         }
-        let view = this.$refs[`favorite_${product.id}`][0]
-        view.nativeView
-          .animate({
-            scale: { x: 1.8, y: 1.8 },
-            duration: 100,
-            curve: enums.AnimationCurve.easeIn
-          })
-          .then(() => {
-            view.nativeView.animate({
-              scale: { x: 1, y: 1 },
-              duration: 100,
-              curve: enums.AnimationCurve.easeOut
-            })
-          })
+        this.playHeartbeatAnimation(this.$refs[`favorite_${product.id}`][0])
       })
     },
     onFavoriteFilterTap() {
