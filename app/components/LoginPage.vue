@@ -7,7 +7,7 @@
           <StackLayout>
 
             <FlexboxLayout alignItems="center" class="login__input-wrapper">
-              <Image src="~/assets/img/icon_user.png" width="16" height="16" class="login__icon" />
+              <Label class="fa login__icon" :text="'fa-user' | fonticon"/>
               <TextField flexGrow="0"
                 hint="Email Address"
                 keyboardType="email"
@@ -22,7 +22,7 @@
             </FlexboxLayout>
 
             <FlexboxLayout alignItems="center" class="login__input-wrapper">
-              <Image src="~/assets/img/icon_lock.png" width="16" height="16" class="login__icon" />
+              <Label class="fa login__icon" :text="'fa-lock' | fonticon"/>
               <TextField
                 ref="password"
                 hint="Password"
