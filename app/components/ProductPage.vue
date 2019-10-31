@@ -6,10 +6,11 @@
 
       <ScrollView row="1">
 
-        <GridLayout rows="auto,auto,auto,*,auto" columns="*,2*" class="product-card">
-          <Image row="0" colSpan="2" :src="cafeProduct.imagesPath" class="product-card__image"/>
+        <GridLayout rows="auto,auto,auto,*,auto" class="product-card">
 
-          <FlexboxLayout row="1" colSpan="2" alignItems="center">
+          <Image row="0" :src="cafeProduct.imagesPath" class="product-card__image"/>
+
+          <FlexboxLayout row="1" alignItems="center">
             <Label :text="cafeProduct.name" class="product-card__name"/>
             <Label class="fa product-card__favorite"
               :text="cafeProduct.favorite ? 'fa-heart' : 'fa-heart-o' | fonticon"
@@ -17,7 +18,7 @@
             />
           </FlexboxLayout>
 
-          <GridLayout row="2" colSpan="2" rows="auto" columns="auto,auto,auto,auto,auto" class="product-card__ingredients-wrapper">
+          <GridLayout row="2" rows="auto" columns="auto,auto,auto,auto,auto" class="product-card__ingredients-wrapper">
 
             <StackLayout col="0" class="product-card__ingredient">
               <Image src="~/assets/img/icon_milk.png" class="product-card__ingredient-icon"/>
@@ -46,17 +47,17 @@
 
           </GridLayout>
 
-          <TextView row="3" colSpan="2" class="product-card__description"
+          <TextView row="3" class="product-card__description"
             editable="false"
             text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Error placeat ipsam suscipit vero, labore dignissimos praesentium."
           />
 
-          <FlexboxLayout row="4" col="0" alignItems="center">
+          <FlexboxLayout row="4" alignItems="center">
             <Label :text="cafeProduct.price" class="product-card__price"/>
             <Label :text="'fa-rub' | fonticon" class="fa product-card__price-sign"/>
+            <Button class="product-card__order-button" text="ORDER NOW" @tap="onOrderButtonTap"/>
           </FlexboxLayout>
 
-          <Button row="4" col="1" class="product-card__order-button" text="ORDER NOW" @tap="onOrderButtonTap"/>
         </GridLayout>
 
       </ScrollView>
@@ -104,85 +105,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss">
-.product-card {
-  padding: 10;
-
-  &__image {
-    margin-bottom: 10;
-  }
-
-  &__name {
-    font-family: Lobster-Regular;
-    font-size: 24;
-    color: #474747;
-  }
-
-  &__favorite {
-    margin-left: 10;
-    color: #ccc;
-    font-size: 24;
-    &_active {
-      color: #ff4b55;
-    }
-  }
-
-  &__ingredients-wrapper {
-    // margin-top: 10;
-  }
-
-  &__ingredient {
-    margin-right: 10;
-  }
-
-  &__ingredient-icon {
-    width: 35;
-    height: 35;
-  }
-
-  &__ingredient-text {
-    font-family: SFUIText-Light;
-    font-size: 8;
-    color: #474747;
-    horizontal-align: center;
-  }
-
-  &__description {
-    font-family: SFUIText-Light;
-    font-size: 16;
-    color: #474747;
-    min-height: auto;
-    margin: 0 0 10 0;
-    border-bottom-width: 1;
-    border-bottom-color: #EAEAEA;
-    padding: 20 0;
-  }
-
-  &__price,
-  &__price-sign {
-    font-size: 24;
-    color: #717171;
-  }
-
-  &__price {
-    font-family: SFUIText-Regular;
-    // vertical-align: middle;
-    // font-size: 28;
-    horizontal-align: right;
-  }
-
-  &__price-sign {
-    margin-left: 10;
-  }
-
-  &__order-button {
-    background-color: #C8D9AF;
-    font-family: SFUIText-Regular;
-    font-size: 20;
-    color: #FFF;
-    // margin: 0;
-    // padding: 0;
-  }
-}
-</style>

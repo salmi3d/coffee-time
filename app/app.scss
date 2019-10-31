@@ -162,7 +162,6 @@ Page {
   &__price-sign {
     color: #C8D9AF;
     font-size: 24;
-    color: #C8D9AF;
   }
 
   &__price {
@@ -209,5 +208,83 @@ Page {
 
   &__gradient {
     background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0), rgba(255,255,255,1));
+  }
+}
+// *** === Cafe Product Page === ***
+.product-card {
+  padding: 10;
+
+  &__image {
+    margin-bottom: 10;
+  }
+
+  &__name {
+    font-family: Lobster-Regular;
+    font-size: 24;
+    color: #474747;
+  }
+
+  &__favorite {
+    margin-left: 10;
+    color: #ccc;
+    font-size: 24;
+    &_active {
+      color: #ff4b55;
+    }
+  }
+
+  &__ingredients-wrapper {
+    margin-top: 10;
+  }
+
+  &__ingredient {
+    margin-right: 10;
+  }
+
+  &__ingredient-icon {
+    width: 35;
+    height: 35;
+  }
+
+  &__ingredient-text {
+    font-family: SFUIText-Light;
+    font-size: 8;
+    color: #474747;
+    horizontal-align: center;
+  }
+
+  &__description {
+    font-family: SFUIText-Light;
+    font-size: 16;
+    color: #474747;
+    min-height: auto;
+    margin: 0 0 10 0;
+    border-bottom-width: 1;
+    border-bottom-color: #EAEAEA;
+    padding: 20 0;
+  }
+
+  &__price,
+  &__price-sign {
+    flex-grow: 1;
+    color: #717171;
+    font-size: 28;
+  }
+
+  &__price {
+    font-family: SFUIText-Regular;
+    text-align: right;
+  }
+
+  &__price-sign {
+    margin: 2 0 0 10;
+  }
+
+  &__order-button {
+    background-color: #C8D9AF;
+    font-family: SFUIText-Regular;
+    font-size: 20;
+    color: #FFF;
+    flex-grow: 2;
   }
 }
