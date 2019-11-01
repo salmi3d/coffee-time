@@ -91,7 +91,7 @@
       },
       login() {
         if (getConnectionType() === connectionType.none) {
-          alert("CoffeeTime requires an internet connection to log in.")
+          alert('CoffeeTime requires an internet connection to log in.')
           return
         }
         this.$authService
@@ -100,26 +100,26 @@
             this.isAuthenticating = false
             this.$navigator.navigate('/home', { clearHistory: true })
           })
-          .catch(error => {
+          .catch(() => {
             this.isAuthenticating = false
-            alert(error)
+            alert('Unfortunately we could not find your account.')
           })
       },
       signUp() {
         if (getConnectionType() === connectionType.none) {
-          alert("CoffeeTime requires an internet connection to register.")
+          alert('CoffeeTime requires an internet connection to register.')
           return
         }
         this.$authService
           .register(this.user)
           .then(() => {
-            alert("Your account was successfully created.")
+            alert('Your account was successfully created.')
             this.isAuthenticating = false
             this.toggleDisplay()
           })
-          .catch(error => {
+          .catch(() => {
             this.isAuthenticating = false
-            alert(error)
+            alert('Unable to register.')
           })
       },
     },

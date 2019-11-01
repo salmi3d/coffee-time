@@ -14,7 +14,7 @@ export default class AuthService extends BackendService {
 
       return Vue.prototype.$backendService.token
     } catch (error) {
-      return Promise.reject('Unfortunately we could not find your account.')
+      throw new Error(error)
     }
   }
 
@@ -28,7 +28,7 @@ export default class AuthService extends BackendService {
 
       return JSON.stringify(response.data)
     } catch (error) {
-      return Promise.reject('Unable to register.')
+      throw new Error(error)
     }
   }
 
