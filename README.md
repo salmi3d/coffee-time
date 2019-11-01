@@ -2,6 +2,9 @@
 
 > A native application built with NativeScript-Vue
 
+## CoffeeTime — Android Demo
+https://youtu.be/zHcMn4wTy_k
+
 ## Project setup
 ```
 npm install
