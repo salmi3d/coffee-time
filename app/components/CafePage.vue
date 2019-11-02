@@ -8,50 +8,53 @@
         <ScrollView>
           <StackLayout>
 
-          <GridLayout rows="*,auto" class="cafe-card">
+            <GridLayout rows="*,auto" class="cafe-card">
 
-            <GridLayout rowSpan="2">
-              <Image :src="cafe.images"/>
-              <StackLayout class="cafe-card__gradient"/>
-            </GridLayout>
-
-            <StackLayout row="1" class="cafe-card__info">
-              <Label :text="cafe.name" class="cafe-card__name"/>
-              <GridLayout columns="*,auto">
-                <Label col="0" :text="cafe.address" class="cafe-card__address"/>
-                <Label col="1" class="fa cafe-card__favorite-filter"
-                  :text="filterFavoriteProducts ? 'fa-heart' : 'fa-heart-o' | fonticon"
-                  @tap="onFavoriteFilterTap"
-                  :class="{ 'cafe-card__favorite-filter_active': filterFavoriteProducts }"
-                />
+              <GridLayout row="0" rowSpan="2">
+                <Image :src="cafe.images"/>
+                <StackLayout class="cafe-card__gradient"/>
               </GridLayout>
-            </StackLayout>
 
-          </GridLayout>
+              <StackLayout row="1" class="cafe-card__info">
+                <Label :text="cafe.name" class="cafe-card__name"/>
+                <GridLayout columns="*,auto">
+                  <Label col="0" :text="cafe.address" class="cafe-card__address"/>
+                  <Label col="1" class="fa cafe-card__favorite-filter"
+                    :text="filterFavoriteProducts ? 'fa-heart' : 'fa-heart-o' | fonticon"
+                    @tap="onFavoriteFilterTap"
+                    :class="{ 'cafe-card__favorite-filter_active': filterFavoriteProducts }"
+                  />
+                </GridLayout>
+              </StackLayout>
 
-          <GridLayout columns="*,*" :rows="rows" class="products-wrapper">
-            <!-- v-show="(filterFavoriteProducts && product.favorite) || !filterFavoriteProducts" -->
-            <GridLayout class="product-info" columns="auto,auto,*" rows="auto,auto,*,auto"
-              v-for="(product, index) in filteredCafeProducts"
-              :key="product.id"
-              :row="Math.floor(index / 2)"
-              :col="index % 2"
-              @tap="onCafeProductTap(product.id)"
-            >
-              <Label row="0" colSpan="3" :text="product.name" class="product-info__name"/>
-              <Label row="1" colSpan="3" text="coffee drink" class="product-info__subname"/>
-              <Image row="2" colSpan="3" :src="product.imagesPath" class="product-info__thumb"/>
-              <Label row="3" col="0" :text="`${product.price} `" class="product-info__price"/>
-              <Label row="3" col="1" :text="'fa-rub' | fonticon" class="fa product-info__price-sign"/>
-              <Label row="3" col="2" class="fa product-info__favorite"
-                :text="product.favorite ? 'fa-heart' : 'fa-heart-o' | fonticon"
-                :class="{ 'product-info__favorite_active': product.favorite }"
-                @tap="onProductFavoriteTap(product)"
-                :ref="`favorite_${product.id}`"
-              />
             </GridLayout>
 
-          </GridLayout>
+            <WrapLayout class="products-wrapper">
+
+              <WrapLayout width="50%"
+                v-for="product in cafeProducts"
+                :key="product.id"
+                v-show="(filterFavoriteProducts && product.favorite) || !filterFavoriteProducts"
+                @tap="onCafeProductTap(product.id)"
+              >
+
+                <GridLayout class="product-info" columns="auto,auto,*" rows="auto,auto,*,auto">
+                  <Label row="0" colSpan="3" :text="product.name" class="product-info__name"/>
+                  <Label row="1" colSpan="3" text="coffee drink" class="product-info__subname"/>
+                  <Image row="2" colSpan="3" :src="product.imagesPath" class="product-info__thumb"/>
+                  <Label row="3" col="0" :text="`${product.price} `" class="product-info__price"/>
+                  <Label row="3" col="1" :text="'fa-rub' | fonticon" class="fa product-info__price-sign"/>
+                  <Label row="3" col="2" class="fa product-info__favorite"
+                    :text="product.favorite ? 'fa-heart' : 'fa-heart-o' | fonticon"
+                    :class="{ 'product-info__favorite_active': product.favorite }"
+                    @tap="onProductFavoriteTap(product)"
+                    :ref="`favorite_${product.id}`"
+                  />
+                </GridLayout>
+
+              </WrapLayout>
+
+            </WrapLayout>
 
           </StackLayout>
         </ScrollView>
@@ -88,21 +91,6 @@ export default {
   computed: {
     ...mapState(['cafeProducts', 'filterFavoriteProducts']),
     ...mapGetters(['cafe']),
-    rows() {
-      const rows = [];
-      for (let i = 0; i < this.filteredCafeProducts.length / 2; i++) {
-          rows.push('auto');
-      }
-      return rows.join(',');
-    },
-    filteredCafeProducts() {
-      return this.cafeProducts.filter(product => {
-        if(this.filterFavoriteProducts) {
-          return product.favorite === true
-        }
-        return true
-      })
-    },
   },
   mounted() {
     // eslint-disable-next-line no-console
