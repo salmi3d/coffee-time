@@ -24,6 +24,7 @@
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "nativescript-fonticon": "^2.0.0",
+    "nativescript-orientation-free": "^2.2.5",
     "nativescript-socketio": "^3.3.1",
     "nativescript-theme-core": "^2.0.24",
     "nativescript-toasty": "^2.0.1",

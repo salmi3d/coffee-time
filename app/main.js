@@ -31,6 +31,8 @@ TNSFontIcon.paths = { 'fa': './assets/font-awesome.css' }
 TNSFontIcon.loadCss()
 Vue.filter('fonticon', fonticon)
 
+require('nativescript-orientation-free')
+
 new Vue({
   store,
   render: h => h(App),

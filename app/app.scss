@@ -136,6 +136,15 @@ Page {
 .products-wrapper {
   margin: 3;
 }
+
+.product-item {
+  width: 50%;
+}
+
+.landscape .product-item {
+  width: 33.33%;
+}
+
 .product-info {
   margin: 3;
   padding: 5 10;

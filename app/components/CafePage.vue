@@ -31,7 +31,7 @@
 
             <WrapLayout class="products-wrapper">
 
-              <WrapLayout width="50%"
+              <WrapLayout class="product-item"
                 v-for="product in cafeProducts"
                 :key="product.id"
                 v-show="(filterFavoriteProducts && product.favorite) || !filterFavoriteProducts"
