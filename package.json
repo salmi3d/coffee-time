@@ -23,6 +23,7 @@
     "@vue/devtools": "^5.1.1",
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
+    "nativescript-fancyalert": "^3.0.9",
     "nativescript-fonticon": "^2.0.0",
     "nativescript-orientation-free": "^2.2.5",
     "nativescript-socketio": "^3.3.1",
