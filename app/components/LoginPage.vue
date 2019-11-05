@@ -60,7 +60,7 @@
 <script>
   import { connectionType, getConnectionType } from 'tns-core-modules/connectivity'
   import User from '../models/User'
-  import alert from '../utils/alert'
+  import { TNSFancyAlert } from 'nativescript-fancyalert'
 
   export default {
     mounted() {
@@ -91,7 +91,7 @@
       },
       login() {
         if (getConnectionType() === connectionType.none) {
-          alert('CoffeeTime requires an internet connection to log in.')
+          TNSFancyAlert.showWarning('Warning', 'CoffeeTime requires an internet connection to log in.')
           return
         }
         this.$authService
@@ -102,24 +102,26 @@
           })
           .catch(() => {
             this.isAuthenticating = false
-            alert('Unfortunately we could not find your account.')
+            TNSFancyAlert.showError('Error', 'Unfortunately we could not find your account.')
           })
       },
       signUp() {
         if (getConnectionType() === connectionType.none) {
-          alert('CoffeeTime requires an internet connection to register.')
+          TNSFancyAlert.showWarning('Warning', 'CoffeeTime requires an internet connection to register.')
           return
         }
         this.$authService
           .register(this.user)
           .then(() => {
-            alert('Your account was successfully created.')
-            this.isAuthenticating = false
-            this.toggleDisplay()
+            TNSFancyAlert.showSuccess('Success', 'Your account was successfully created.')
+              .then(() => {
+                this.isAuthenticating = false
+                this.toggleDisplay()
+              })
           })
           .catch(() => {
             this.isAuthenticating = false
-            alert('Unable to register.')
+            TNSFancyAlert.showError('Error', 'Unable to register.')
           })
       },
     },
