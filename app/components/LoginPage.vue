@@ -40,7 +40,7 @@
 
           <Button
             :text="isLoggingIn ? 'Login' : 'Sign up'"
-            :isEnabled="!isAuthenticating"
+            :isEnabled="!isAuthenticating && user.email.length > 0 && user.password.length > 0"
             class="login__submit"
             @tap="submit"
           />
