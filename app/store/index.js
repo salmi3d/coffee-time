@@ -45,6 +45,12 @@ const mutations = {
 }
 
 const actions = {
+  setActiveCafe({ commit }, cafeId) {
+    commit('SET_ACTIVE_CAFE', cafeId)
+  },
+  setActiveCafeProduct({ commit }, cafeProductId) {
+    commit('SET_ACTIVE_CAFE_PRODUCT', cafeProductId)
+  },
   fetchCafes({ commit }, options) {
     options = options || {}
 
@@ -93,6 +99,9 @@ const actions = {
         // eslint-disable-next-line no-console
         console.log(error)
       })
+  },
+  toggleFilterFavoriteProducts({ commit }) {
+    commit('TOGGLE_FILTER_FAVORITE_PRODUCTS')
   },
 }
 

@@ -83,7 +83,7 @@ export default {
   watch: {
     'this.id': {
       handler(id) {
-        this.$store.commit('SET_ACTIVE_CAFE', this.id)
+        this.$store.dispatch('setActiveCafe', this.id)
       },
       immediate: true
     }
@@ -119,7 +119,7 @@ export default {
       })
     },
     onFavoriteFilterTap() {
-      this.$store.commit('TOGGLE_FILTER_FAVORITE_PRODUCTS')
+      this.$store.dispatch('toggleFilterFavoriteProducts')
     },
     refreshPage(args) {
       var pullRefresh = args.object
