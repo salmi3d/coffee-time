@@ -23,22 +23,22 @@ const getters = {
 }
 
 const mutations = {
-  SET_CAFES: (state, cafes) => {
+  SET_CAFES(state, cafes) {
     state.cafes = cafes
   },
-  SET_ACTIVE_CAFE: (state, id) => {
+  SET_ACTIVE_CAFE(state, id) {
     state.activeCafe = id
   },
-  SET_ACTIVE_CAFE_PRODUCT: (state, id) => {
+  SET_ACTIVE_CAFE_PRODUCT(state, id) {
     state.activeCafeProduct = id
   },
-  SET_CAFE_PRODUCTS: (state, cafeProducts) => {
+  SET_CAFE_PRODUCTS(state, cafeProducts) {
     state.cafeProducts = cafeProducts
   },
-  TOGGLE_FILTER_FAVORITE_PRODUCTS: (state) => {
+  TOGGLE_FILTER_FAVORITE_PRODUCTS(state) {
     state.filterFavoriteProducts = !state.filterFavoriteProducts
   },
-  TOGGLE_CAFE_PRODUCT_FAVORITE: (state, cafeProductId) => {
+  TOGGLE_CAFE_PRODUCT_FAVORITE(state, cafeProductId) {
     let cafeProduct = state.cafeProducts.find(cafeProduct => cafeProduct.id === cafeProductId)
     cafeProduct.favorite = !cafeProduct.favorite
   },
