@@ -88,7 +88,7 @@ export default {
   watch: {
     'this.id': {
       handler(id) {
-        this.$store.commit('setActiveCafeProduct', this.id)
+        this.$store.commit('SET_ACTIVE_CAFE_PRODUCT', this.id)
       },
       immediate: true
     }

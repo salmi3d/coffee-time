@@ -23,22 +23,22 @@ const getters = {
 }
 
 const mutations = {
-  setCafes: (state, cafes) => {
+  SET_CAFES: (state, cafes) => {
     state.cafes = cafes
   },
-  setActiveCafe: (state, id) => {
-    state.activeCafe = id;
+  SET_ACTIVE_CAFE: (state, id) => {
+    state.activeCafe = id
   },
-  setActiveCafeProduct: (state, id) => {
-    state.activeCafeProduct = id;
+  SET_ACTIVE_CAFE_PRODUCT: (state, id) => {
+    state.activeCafeProduct = id
   },
-  setCafeProducts: (state, cafeProducts) => {
+  SET_CAFE_PRODUCTS: (state, cafeProducts) => {
     state.cafeProducts = cafeProducts
   },
-  toggleFilterFavoriteProducts: (state) => {
+  TOGGLE_FILTER_FAVORITE_PRODUCTS: (state) => {
     state.filterFavoriteProducts = !state.filterFavoriteProducts
   },
-  toggleCafeProductFavorite: (state, cafeProductId) => {
+  TOGGLE_CAFE_PRODUCT_FAVORITE: (state, cafeProductId) => {
     let cafeProduct = state.cafeProducts.find(cafeProduct => cafeProduct.id === cafeProductId)
     cafeProduct.favorite = !cafeProduct.favorite
   },
@@ -49,14 +49,14 @@ const actions = {
     options = options || {}
 
     if(options.isFake) {
-      commit('setCafes', fakeCafes)
+      commit('SET_CAFES', fakeCafes)
       return new Promise(resolve => resolve())
     }
 
     return Vue.axios
       .post('/Cafe/GetAll', JSON.stringify(Vue.prototype.$backendService.token))
       .then(response => {
-        commit('setCafes', response.data)
+        commit('SET_CAFES', response.data)
       })
       .catch(error => {
         // eslint-disable-next-line no-console
@@ -70,7 +70,7 @@ const actions = {
         'cafeId': state.activeCafe
       })
       .then(response => {
-        commit('setCafeProducts', response.data)
+        commit('SET_CAFE_PRODUCTS', response.data)
       })
       .catch(error => {
         // eslint-disable-next-line no-console
@@ -86,7 +86,7 @@ const actions = {
       })
       .then(response => {
         if(response.data === true) {
-          commit('toggleCafeProductFavorite', payload.id)
+          commit('TOGGLE_CAFE_PRODUCT_FAVORITE', payload.id)
         }
       })
       .catch(error => {
