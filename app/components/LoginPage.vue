@@ -58,72 +58,72 @@
 </template>
 
 <script>
-  import { connectionType, getConnectionType } from 'tns-core-modules/connectivity'
-  import User from '../models/User'
-  import { TNSFancyAlert } from 'nativescript-fancyalert'
+import { connectionType, getConnectionType } from 'tns-core-modules/connectivity'
+import User from '../models/User'
+import { TNSFancyAlert } from 'nativescript-fancyalert'
 
-  export default {
-    mounted() {
-      // eslint-disable-next-line no-console
-      console.log('LoginPage mounted')
+export default {
+  mounted() {
+    // eslint-disable-next-line no-console
+    console.log('LoginPage mounted')
+  },
+  data() {
+    return {
+      isLoggingIn: true,
+      isAuthenticating: false,
+      user: new User()
+    }
+  },
+  methods: {
+    toggleDisplay() {
+      this.isLoggingIn = !this.isLoggingIn
     },
-    data() {
-      return {
-        isLoggingIn: true,
-        isAuthenticating: false,
-        user: new User()
+    focusPassword() {
+      this.$refs.password.nativeView.focus()
+    },
+    submit() {
+      this.isAuthenticating = true
+      if (this.isLoggingIn) {
+        this.login()
+      } else {
+        this.signUp()
       }
     },
-    methods: {
-      toggleDisplay() {
-        this.isLoggingIn = !this.isLoggingIn
-      },
-      focusPassword() {
-        this.$refs.password.nativeView.focus()
-      },
-      submit() {
-        this.isAuthenticating = true
-        if (this.isLoggingIn) {
-          this.login()
-        } else {
-          this.signUp()
-        }
-      },
-      login() {
-        if (getConnectionType() === connectionType.none) {
-          TNSFancyAlert.showWarning('Warning', 'CoffeeTime requires an internet connection to log in.')
-          return
-        }
-        this.$authService
-          .login(this.user)
-          .then(() => {
-            this.isAuthenticating = false
-            this.$navigator.navigate('/home', { clearHistory: true })
-          })
-          .catch(() => {
-            this.isAuthenticating = false
-            TNSFancyAlert.showError('Error', 'Unfortunately we could not find your account.')
-          })
-      },
-      signUp() {
-        if (getConnectionType() === connectionType.none) {
-          TNSFancyAlert.showWarning('Warning', 'CoffeeTime requires an internet connection to register.')
-          return
-        }
-        this.$authService
-          .register(this.user)
-          .then(() => {
-            TNSFancyAlert.showSuccess('Success', 'Your account was successfully created.')
-              .then(() => {
-                this.isAuthenticating = false
-                this.toggleDisplay()
-              })
-          })
-          .catch(() => {
-            this.isAuthenticating = false
-            TNSFancyAlert.showError('Error', 'Unable to register.')
-          })
-      },
+    login() {
+      if (getConnectionType() === connectionType.none) {
+        TNSFancyAlert.showWarning('Warning', 'CoffeeTime requires an internet connection to log in.')
+        return
+      }
+      this.$authService
+        .login(this.user)
+        .then(() => {
+          this.isAuthenticating = false
+          this.$navigator.navigate('/home', { clearHistory: true })
+        })
+        .catch(() => {
+          this.isAuthenticating = false
+          TNSFancyAlert.showError('Error', 'Unfortunately we could not find your account.')
+        })
     },
-  }
+    signUp() {
+      if (getConnectionType() === connectionType.none) {
+        TNSFancyAlert.showWarning('Warning', 'CoffeeTime requires an internet connection to register.')
+        return
+      }
+      this.$authService
+        .register(this.user)
+        .then(() => {
+          TNSFancyAlert.showSuccess('Success', 'Your account was successfully created.')
+            .then(() => {
+              this.isAuthenticating = false
+              this.toggleDisplay()
+            })
+        })
+        .catch(() => {
+          this.isAuthenticating = false
+          TNSFancyAlert.showError('Error', 'Unable to register.')
+        })
+    },
+  },
+}
 </script>

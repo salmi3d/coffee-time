@@ -7,25 +7,25 @@
 </template>
 
 <script>
-  export default {
-    name: 'ActionBar',
-    props: {
-      text: {
-        type: String,
-        default: 'CoffeeTime'
-      },
-      back: {
-        type: Boolean,
-        default: true
-      }
+export default {
+  name: 'ActionBar',
+  props: {
+    text: {
+      type: String,
+      default: 'CoffeeTime'
     },
-    methods: {
-      goBack() {
-        if(!this.back) {
-          return
-        }
-        this.$navigator.back()
+    back: {
+      type: Boolean,
+      default: true
+    }
+  },
+  methods: {
+    goBack() {
+      if(!this.back) {
+        return
       }
+      this.$navigator.back()
     }
   }
+}
 </script>

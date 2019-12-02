@@ -76,43 +76,43 @@ import animations from '../utils/animations'
 
 export default {
   name: 'ProductPage',
-    components: {
-      ActionBar,
-    },
-    data() {
-      return {
+  components: {
+    ActionBar,
+  },
+  data() {
+    return {
 
-      }
-    },
-    props: ['id'],
-    watch: {
-      'this.id': {
-        handler(id) {
-          this.$store.commit('setActiveCafeProduct', this.id)
-        },
-        immediate: true
-      }
-    },
-    computed: {
-      ...mapGetters(['cafeProduct']),
-    },
-    mounted() {
-      // eslint-disable-next-line no-console
-      console.log(`productId=${this.id}`)
-    },
-    mixins: [ animations.Heartbeat ],
-    methods: {
-      onOrderButtonTap() {
-        alert(`${this.cafeProduct.name} was ordered!`)
+    }
+  },
+  props: ['id'],
+  watch: {
+    'this.id': {
+      handler(id) {
+        this.$store.commit('setActiveCafeProduct', this.id)
       },
-      onFavoriteTap() {
-        this.$store.dispatch('toggleCafeProductFavorite', this.cafeProduct).then(() => {
-          if(!this.cafeProduct.favorite) {
-            return
-          }
-          this.playHeartbeatAnimation(this.$refs.favorite)
-        })
-      },
+      immediate: true
+    }
+  },
+  computed: {
+    ...mapGetters(['cafeProduct']),
+  },
+  mounted() {
+    // eslint-disable-next-line no-console
+    console.log(`productId=${this.id}`)
+  },
+  mixins: [ animations.Heartbeat ],
+  methods: {
+    onOrderButtonTap() {
+      alert(`${this.cafeProduct.name} was ordered!`)
     },
+    onFavoriteTap() {
+      this.$store.dispatch('toggleCafeProductFavorite', this.cafeProduct).then(() => {
+        if(!this.cafeProduct.favorite) {
+          return
+        }
+        this.playHeartbeatAnimation(this.$refs.favorite)
+      })
+    },
+  },
 }
 </script>
