@@ -1,17 +1,13 @@
 import BackendService from './BackendService'
+import ApiService from './ApiService'
 import Vue from 'nativescript-vue'
 
 export default class AuthService extends BackendService {
 
   async login(user) {
     try {
-      const response = await Vue.axios
-        .post('/User/Authorization', {
-          email: user.email,
-          password: user.password
-        })
+      const response = await ApiService.authUser(user)
       Vue.prototype.$backendService.token = response.data
-
       return Vue.prototype.$backendService.token
     } catch (error) {
       throw new Error(error)
@@ -20,12 +16,7 @@ export default class AuthService extends BackendService {
 
   async register(user) {
     try {
-      const response = await Vue.axios
-        .post('/User/Register', {
-          email: user.email,
-          password: user.password
-        })
-
+      const response = await ApiService.registerUser(user)
       return JSON.stringify(response.data)
     } catch (error) {
       throw new Error(error)
